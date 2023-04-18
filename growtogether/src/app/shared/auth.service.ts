@@ -12,9 +12,16 @@ export class AuthService {
 
   login(email: string, password: string) {
     this.fireAuth.signInWithEmailAndPassword(email, password).then(
-      () => {
+      (res) => {
         localStorage.setItem('token', 'true');
-        this.router.navigate(['dashboard']);
+
+        if(res.user?.emailVerified) {
+          this.router.navigate(['dashboard']);
+        } else {
+          this.router.navigate(['/verify-email']);
+        }
+
+
       },
       (err) => {
         alert(err.message);
@@ -25,9 +32,10 @@ export class AuthService {
 
   register(email: string, password: string) {
     this.fireAuth.createUserWithEmailAndPassword(email, password).then(
-      () => {
+      (res) => {
         alert('Usuário registrado com sucesso!');
         this.router.navigate(['/login']);
+        this.sendEmailForVerification(res.user);
       },
       (err) => {
         alert(err.message);
@@ -46,5 +54,22 @@ export class AuthService {
         alert(err.message);
       }
     );
+  }
+
+  forgotPswd(email: string) {
+    this.fireAuth.sendPasswordResetEmail(email).then(() => {
+      this.router.navigate(['/verify-email'])
+    }, err => {
+      alert('Algo deu errado!')
+    })
+  }
+
+  sendEmailForVerification(user: any) {
+    this.fireAuth.currentUser.then(u => u?.sendEmailVerification()).then(
+      () => {
+        this.router.navigate(['/verify-email']);
+    }, (err:any) => {
+      alert('Algo deu errado. Não foi possível enviar o email!')
+    });
   }
 }

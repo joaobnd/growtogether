@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
   registerForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required)
-  })
+  });
 
   constructor(private auth: AuthService) { }
 
