@@ -1,11 +1,80 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Bem-vindo ao Dashboard</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <p>Olá, usuário! Bem-vindo ao dashboard da aplicação.</p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button color="warn" (click)="logout()">Sair</button>
-  </mat-card-actions>
-</mat-card>
+<!-- meet-form.component.html -->
+
+<div>
+  <form [formGroup]="studentForm" (ngSubmit)="addStudent()" class="container">
+    <mat-form-field>
+      <input matInput formControlName="firstName" placeholder="Primeiro nome">
+      <mat-error *ngIf="studentForm.get('firstName')?.hasError('required')">Campo obrigatório</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="lastName" placeholder="Último nome">
+      <mat-error *ngIf="studentForm.get('lastName')?.hasError('required')">Campo obrigatório</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="weight" placeholder="Peso">
+      <mat-error *ngIf="studentForm.get('weight')?.hasError('required')">Campo obrigatório</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="height" placeholder="Altura">
+      <mat-error *ngIf="studentForm.get('height')?.hasError('required')">Campo obrigatório</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput formControlName="objective" placeholder="Objetivo"></textarea>
+    </mat-form-field>
+    <mat-radio-group formControlName="hasLesion" class="radio-container">
+      <mat-label>Possui alguma lesão ?</mat-label>
+      <mat-radio-button value="Sim">Sim</mat-radio-button>
+      <mat-radio-button value="Não">Não</mat-radio-button>
+    </mat-radio-group>
+    <mat-radio-group formControlName="hasExperience">
+      <mat-label>Já fez academia antes?</mat-label>
+      <mat-radio-button value="Sim">Sim</mat-radio-button>
+      <mat-radio-button value="Não">Não</mat-radio-button>
+    </mat-radio-group>
+    <mat-radio-group formControlName="hasFoodRestriction">
+      <mat-label>Possui alguma restrição alimentar?</mat-label>
+      <mat-radio-button value="Sim">Sim</mat-radio-button>
+      <mat-radio-button value="Não">Não</mat-radio-button>
+    </mat-radio-group>
+    <mat-radio-group formControlName="useMedicine">
+      <mat-label>Usa algum medicamento?</mat-label>
+      <mat-radio-button value="Sim">Sim</mat-radio-button>
+      <mat-radio-button value="Não">Não</mat-radio-button>
+    </mat-radio-group>
+    <mat-radio-group formControlName="isSmoker">
+      <mat-label>Você é fumante?</mat-label>
+      <mat-radio-button value="Sim">Sim</mat-radio-button>
+      <mat-radio-button value="Não">Não</mat-radio-button>
+    </mat-radio-group>
+    <mat-form-field>
+      <textarea matInput formControlName="routineDescription" placeholder="Descrição da rotina"></textarea>
+    </mat-form-field>
+    <button mat-raised-button color="primary">Salvar</button>
+  </form>
+
+  <mat-accordion multi>
+    <mat-expansion-panel *ngFor="let student of studentsList">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ student.firstName }} {{ student.lastName }}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{ student.objective }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-card>
+        <mat-card-content>
+          <p><strong>Altura:</strong> {{ student.height }} cm</p>
+          <p><strong>Peso:</strong> {{ student.weight }} kg</p>
+          <p><strong>Lesão:</strong> {{ student.hasLesion}}</p>
+          <p><strong>Experiência:</strong> {{ student.hasExperience}}</p>
+          <p><strong>Restrição Alimentar:</strong> {{ student.hasFoodRestriction}}</p>
+          <p><strong>Medicação:</strong> {{ student.useMedicine}}</p>
+          <p><strong>Fumante:</strong> {{ student.isSmoker}}</p>
+          <p><strong>Descrição da Rotina:</strong> {{ student.routineDescription }}</p>
+        </mat-card-content>
+      </mat-card>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</div>

@@ -15,6 +15,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
@@ -25,7 +27,9 @@ const matModules = [
   MatInputModule,
   MatIconModule,
   MatButtonModule,
-  MatGridListModule
+  MatGridListModule,
+  MatRadioModule,
+  MatExpansionModule
 ];
 
 @NgModule({
