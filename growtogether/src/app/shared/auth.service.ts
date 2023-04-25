@@ -2,32 +2,30 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   constructor(private fireAuth: AngularFireAuth, private router: Router) {}
 
   login(email: string, password: string) {
-    this.fireAuth.signInWithEmailAndPassword(email, password).then(
-      (res) => {
-        localStorage.setItem('token', 'true');
-
+    this.fireAuth
+      .signInWithEmailAndPassword(email, password)
+      .then((res) => {
         if(res.user?.emailVerified) {
           this.router.navigate(['dashboard']);
         } else {
           this.router.navigate(['/verify-email']);
-        }
-
-
-      },
-      (err) => {
+        };
+        return res.user?.getIdToken();
+      })
+      .then((token: any) => {
+        sessionStorage.setItem('token', token);
+      }),
+      (err: any) => {
         alert(err.message);
         this.router.navigate(['/login']);
-      }
-    );
+      };
   }
 
   register(email: string, password: string) {
@@ -57,19 +55,31 @@ export class AuthService {
   }
 
   forgotPswd(email: string) {
-    this.fireAuth.sendPasswordResetEmail(email).then(() => {
-      this.router.navigate(['/verify-email'])
-    }, err => {
-      alert('Algo deu errado!')
-    })
+    this.fireAuth.sendPasswordResetEmail(email).then(
+      () => {
+        this.router.navigate(['/verify-email']);
+      },
+      (err) => {
+        alert('Algo deu errado!');
+      }
+    );
   }
 
   sendEmailForVerification(user: any) {
-    this.fireAuth.currentUser.then(u => u?.sendEmailVerification()).then(
-      () => {
-        this.router.navigate(['/verify-email']);
-    }, (err:any) => {
-      alert('Algo deu errado. Não foi possível enviar o email!')
-    });
+    this.fireAuth.currentUser
+      .then((u) => u?.sendEmailVerification())
+      .then(
+        () => {
+          this.router.navigate(['/verify-email']);
+        },
+        (err: any) => {
+          alert('Algo deu errado. Não foi possível enviar o email!');
+        }
+      );
+  }
+
+  getPersonalEmail(token:string) {
+    const decodedToken = JSON.parse(atob(token.split('.')[1]));
+    return decodedToken.email;
   }
 }

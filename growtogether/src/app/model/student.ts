@@ -1,5 +1,6 @@
 export interface Student {
   id: string;
+  emailOfPersonal: string;
   firstName: string;
   lastName: string;
   weight: number;

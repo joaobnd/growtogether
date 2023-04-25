@@ -60,6 +60,7 @@ export class DashboardComponent implements OnInit {
     const studentObj: Student = {
       id: '',
       firstName: this.studentForm.get('firstName')?.value,
+      emailOfPersonal: this.auth.getPersonalEmail(sessionStorage.getItem('token') || ""),
       lastName: this.studentForm.get('lastName')?.value,
       weight: this.studentForm.get('weight')?.value,
       height: this.studentForm.get('height')?.value,
