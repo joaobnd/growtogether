@@ -17,9 +17,15 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatTableModule} from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatList, MatListModule } from '@angular/material/list';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
+import { StudentsDetailComponent } from './components/students-detail/students-detail.component';
+import { TrainingDetailsComponent } from './components/training-details/training-details.component';
+import { AddTrainingComponent } from './components/add-training/add-training.component';
+import { AddExerciseComponent } from './components/add-exercise/add-exercise.component';
 
 const matModules = [
   MatCardModule,
@@ -29,7 +35,9 @@ const matModules = [
   MatButtonModule,
   MatGridListModule,
   MatRadioModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatTableModule,
+  MatListModule
 ];
 
 @NgModule({
@@ -39,7 +47,11 @@ const matModules = [
     DashboardComponent,
     RegisterComponent,
     ForgotPasswordComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    StudentsDetailComponent,
+    TrainingDetailsComponent,
+    AddTrainingComponent,
+    AddExerciseComponent
   ],
   imports: [
     BrowserModule,

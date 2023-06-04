@@ -1,0 +1,35 @@
+<mat-card>
+  <mat-card-content>
+    <h2>Novo Treino</h2>
+    <div class="input-group" [formGroup]="trainingForm">
+      <form [formGroup]="trainingForm">
+        <mat-form-field>
+          <input matInput placeholder="Grupo Muscular" formControlName="muscleGroup">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Intervalo" formControlName="restTimeSeconds">
+        </mat-form-field>
+        <app-add-exercise (exerciseCreated)="addNewExercise($event)"></app-add-exercise>
+    </form>
+    </div>
+    <div *ngFor="let exercise of exercises">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ exercise.name }}
+            </mat-panel-title>
+            <button mat-icon-button (click)="removeExercise(exercise)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-expansion-panel-header>
+          {{exercise.sxr}}
+          {{exercise.technique}}
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="saveTraining()">Salvar Treino</button>
+  </mat-card-actions>
+</mat-card>

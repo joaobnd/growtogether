@@ -63,6 +63,7 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
       <mat-card>
+        <button mat-button (click)="navigateToStudent(student.id)">Ver treino</button>
         <mat-card-content>
           <p><strong>Altura:</strong> {{ student.height }} cm</p>
           <p><strong>Peso:</strong> {{ student.weight }} kg</p>

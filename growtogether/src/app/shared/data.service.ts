@@ -26,4 +26,8 @@ export class DataService {
     this.deleteStudent(student);
     this.addStudent(student);
   }
+
+  getStudentById(id: any) {
+    return this.afs.collection('/Students').doc(id).valueChanges();
+  }
 }

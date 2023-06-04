@@ -1,0 +1,22 @@
+<mat-table [dataSource]="training.exercises">
+  <!-- Nome do Exercício -->
+  <ng-container matColumnDef="exerciseName">
+    <mat-header-cell *matHeaderCellDef>Nome do Exercício</mat-header-cell>
+    <mat-cell *matCellDef="let exercise">{{ exercise.name }}</mat-cell>
+  </ng-container>
+
+  <!-- Série por Repetição -->
+  <ng-container matColumnDef="setsReps">
+    <mat-header-cell *matHeaderCellDef>Série por Repetição</mat-header-cell>
+    <mat-cell *matCellDef="let exercise">{{ exercise.sets }} x {{ exercise.reps }}</mat-cell>
+  </ng-container>
+
+  <!-- Técnica Avançada -->
+  <ng-container matColumnDef="advancedTechnique">
+    <mat-header-cell *matHeaderCellDef>Técnica Avançada</mat-header-cell>
+    <mat-cell *matCellDef="let exercise">{{ exercise.advancedTechnique }}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="['exerciseName', 'setsReps', 'advancedTechnique']"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: ['exerciseName', 'setsReps', 'advancedTechnique']"></mat-row>
+</mat-table>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Route, Router } from '@angular/router';
 import { Student } from 'src/app/model/student';
 import { AuthService } from 'src/app/shared/auth.service';
 import { DataService } from 'src/app/shared/data.service';
@@ -27,7 +28,7 @@ export class DashboardComponent implements OnInit {
       routineDescription: new FormControl('')
   });
 
-  constructor(private auth: AuthService, private data : DataService) { }
+  constructor(private auth: AuthService, private data : DataService, private route: Router) { }
 
   ngOnInit(): void {
     this.getAllStudents()
@@ -44,7 +45,6 @@ export class DashboardComponent implements OnInit {
         data.id = e.payload.doc.id;
         return data;
       })
-      console.log(this.studentsList)
     }, (err:any) => {
       alert('Erro ao buscar os alunos!')
     })
@@ -71,11 +71,15 @@ export class DashboardComponent implements OnInit {
       useMedicine: this.studentForm.get('useMedicine')?.value,
       isSmoker: this.studentForm.get('isSmoker')?.value,
       routineDescription: this.studentForm.get('routineDescription')?.value,
+      workouts: []
     }
 
     this.data.addStudent(studentObj);
-    console.log(studentObj.useMedicine);
     this.studentForm.reset();
+  }
+
+  navigateToStudent(id:any) {
+    this.route.navigate(['/student', id ])
   }
 
 }

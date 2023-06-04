@@ -1,3 +1,5 @@
+import { Training } from "./training";
+
 export interface Student {
   id: string;
   emailOfPersonal: string;
@@ -12,4 +14,5 @@ export interface Student {
   useMedicine: string;
   isSmoker: string;
   routineDescription: string;
+  workouts: Training[];
 }

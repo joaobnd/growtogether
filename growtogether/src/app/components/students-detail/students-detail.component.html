@@ -1,0 +1,97 @@
+<div class="student-details">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Detalhes do Aluno</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="student-info">
+
+        <div class="info-row">
+          <strong>Nome:</strong>
+          <span>{{ student.firstName }} {{ student.lastName }}</span>
+        </div>
+
+        <div class="info-row">
+          <strong>Peso:</strong>
+          <span>{{ student.weight }}</span>
+        </div>
+
+        <div class="info-row">
+          <strong>Altura:</strong>
+          <span>{{ student.height }}</span>
+        </div>
+
+        <div class="info-row">
+          <strong>Objetivo:</strong>
+          <span>{{ student.objective }}</span>
+        </div>
+
+        <div class="info-row">
+          <strong>Lesão:</strong>
+          <span>{{ student.hasLesion }}</span>
+        </div>
+
+        <div class="info-row">
+          <strong>Experiência:</strong>
+          <span>{{ student.hasExperience }}</span>
+        </div>
+
+        <div class="info-row">
+          <strong>Restrição Alimentar:</strong>
+          <span>{{ student.hasFoodRestriction }}</span>
+        </div>
+
+        <div class="info-row">
+          <strong>Uso de Medicamentos:</strong>
+          <span>{{ student.useMedicine }}</span>
+        </div>
+
+        <div class="info-row">
+          <strong>Fumante:</strong>
+          <span>{{ student.isSmoker }}</span>
+        </div>
+
+        <div class="info-row">
+          <strong>Descrição da Rotina:</strong>
+          <span>{{ student.routineDescription }}</span>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Lista de Treinos</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let training of student.workouts">
+        <h3 mat-line>{{ training.name }}</h3>
+        <p mat-line><strong>Grupo Muscular:</strong> {{ training.muscleGroup }}</p>
+        <p mat-line><strong>Tempo de Descanso:</strong> {{ training.restTimeSeconds }}</p>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Exercícios</mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-list>
+            <mat-list-item *ngFor="let exercise of training.exercises">
+              <h4 mat-line>{{ exercise.name }}</h4>
+              <p mat-line><strong>Série por Repetição:</strong> {{ exercise.sxr }}</p>
+              <p mat-line><strong>Técnica Avançada:</strong> {{ exercise.technique }}</p>
+            </mat-list-item>
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="addTraining()">Adicionar Treino</button>
+  </mat-card-actions>
+</mat-card>
+
+<ng-container *ngIf="showAddTraining">
+  <app-add-training></app-add-training>
+</ng-container>
