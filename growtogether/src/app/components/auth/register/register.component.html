@@ -1,0 +1,32 @@
+<mat-grid-list cols="1" rowHeight="100%">
+  <mat-card class="register-card">
+    <mat-card-content class="register-card-content">
+      <form [formGroup]="registerForm" class="register-card-content-form">
+        <mat-form-field appearance="outline">
+          <mat-icon matSuffix>email</mat-icon>
+          <input matInput placeholder="Email" formControlName="email" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-icon matSuffix>lock</mat-icon>
+          <input
+            matInput
+            placeholder="Senha"
+            type="password"
+            formControlName="password"
+          />
+        </mat-form-field>
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="registerForm.invalid"
+          (click)="register()"
+        >
+          Cadastrar
+        </button>
+      </form>
+      <div class="register-card-actions">
+        <a mat-button routerLink="/auth">Já possui uma conta? Faça Login</a>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</mat-grid-list>
