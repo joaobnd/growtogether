@@ -1,0 +1,114 @@
+<div class="student-add-container wrapper">
+  <header class="student-add-container-header">
+    <button
+      mat-stroked-button
+      color="primary"
+      type="button"
+      routerLink="/dashboard"
+    >
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    <h1>Cadastrar novo aluno</h1>
+  </header>
+
+  <form
+    [formGroup]="studentForm"
+    (ngSubmit)="addStudent()"
+    class="student-add-container-form"
+  >
+    <div class="student-add-container-form-column">
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="firstName" placeholder="Nome" />
+        <mat-error *ngIf="studentForm.get('firstName')?.hasError('required')"
+          >Campo obrigatório</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="lastName" placeholder="Último nome" />
+        <mat-error *ngIf="studentForm.get('lastName')?.hasError('required')"
+          >Campo obrigatório</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="weight" placeholder="Peso" />
+        <mat-error *ngIf="studentForm.get('weight')?.hasError('required')"
+          >Campo obrigatório</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="height" placeholder="Altura" />
+        <mat-error *ngIf="studentForm.get('height')?.hasError('required')"
+          >Campo obrigatório</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <textarea
+          matInput
+          formControlName="objective"
+          placeholder="Objetivo"
+        ></textarea>
+      </mat-form-field>
+    </div>
+    <div class="student-add-container-form-column">
+      <mat-radio-group
+        color="primary"
+        formControlName="hasLesion"
+        class="student-add-container-form-column-radio"
+      >
+        <mat-label>Possui alguma lesão?</mat-label>
+        <mat-radio-button value="Sim">Sim</mat-radio-button>
+        <mat-radio-button value="Não">Não</mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group
+        color="primary"
+        formControlName="hasExperience"
+        class="student-add-container-form-column-radio"
+      >
+        <mat-label>Já fez academia antes?</mat-label>
+        <mat-radio-button value="Sim">Sim</mat-radio-button>
+        <mat-radio-button value="Não">Não</mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group
+        color="primary"
+        formControlName="hasFoodRestriction"
+        class="student-add-container-form-column-radio"
+      >
+        <mat-label>Possui alguma restrição alimentar?</mat-label>
+        <mat-radio-button value="Sim">Sim</mat-radio-button>
+        <mat-radio-button value="Não">Não</mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group
+        color="primary"
+        formControlName="useMedicine"
+        class="student-add-container-form-column-radio"
+      >
+        <mat-label>Usa algum medicamento?</mat-label>
+        <mat-radio-button value="Sim">Sim</mat-radio-button>
+        <mat-radio-button value="Não">Não</mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group
+        color="primary"
+        formControlName="isSmoker"
+        class="student-add-container-form-column-radio"
+      >
+        <mat-label>Você é fumante?</mat-label>
+        <mat-radio-button value="Sim">Sim</mat-radio-button>
+        <mat-radio-button value="Não">Não</mat-radio-button>
+      </mat-radio-group>
+      <mat-form-field appearance="outline">
+        <textarea
+          matInput
+          formControlName="routineDescription"
+          placeholder="Descrição da rotina"
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <footer class="student-add-container-footer">
+    <button mat-stroked-button color="primary" routerLink="/dashboard">
+      Cancelar
+    </button>
+    <button mat-raised-button color="primary">Cadastrar aluno</button>
+  </footer>
+</div>

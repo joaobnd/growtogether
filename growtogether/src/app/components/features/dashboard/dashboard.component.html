@@ -1,0 +1,66 @@
+<div class="dashboard-container wrapper">
+  <button
+    class="dashboard-container-add"
+    mat-stroked-button
+    color="primary"
+    type="button"
+    routerLink="/student/add"
+  >
+    Cadastrar novo aluno
+  </button>
+  <div class="dashboard-container-list">
+    <mat-card
+      class="dashboard-container-list-item"
+      *ngFor="let student of studentsList"
+    >
+      <mat-card-header class="dashboard-container-list-item-header">
+        <img mat-card-sm-image src="/assets/img/user.png" alt="User profile" />
+        <mat-card-title-group
+          class="dashboard-container-list-item-header-group"
+        >
+          <mat-card-title>
+            {{ student.firstName }} {{ student.lastName }}</mat-card-title
+          >
+          <mat-card-subtitle>{{ student.objective }}</mat-card-subtitle>
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content class="dashboard-container-list-item-content">
+        <a (click)="navigateToStudent(student.id)">Ver mais</a>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- <mat-accordion multi>
+    <mat-expansion-panel *ngFor="let student of studentsList">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ student.firstName }} {{ student.lastName }}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{ student.objective }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-card>
+        <button mat-button (click)="navigateToStudent(student.id)">
+          Ver treino
+        </button>
+        <mat-card-content>
+          <p><strong>Altura:</strong> {{ student.height }} cm</p>
+          <p><strong>Peso:</strong> {{ student.weight }} kg</p>
+          <p><strong>Lesão:</strong> {{ student.hasLesion }}</p>
+          <p><strong>Experiência:</strong> {{ student.hasExperience }}</p>
+          <p>
+            <strong>Restrição Alimentar:</strong>
+            {{ student.hasFoodRestriction }}
+          </p>
+          <p><strong>Medicação:</strong> {{ student.useMedicine }}</p>
+          <p><strong>Fumante:</strong> {{ student.isSmoker }}</p>
+          <p>
+            <strong>Descrição da Rotina:</strong>
+            {{ student.routineDescription }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </mat-expansion-panel>
+  </mat-accordion> -->
+</div>

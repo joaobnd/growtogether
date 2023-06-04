@@ -4,13 +4,26 @@
     <div class="input-group" [formGroup]="trainingForm">
       <form [formGroup]="trainingForm">
         <mat-form-field>
-          <input matInput placeholder="Grupo Muscular" formControlName="muscleGroup">
+          <input matInput placeholder="Nome" formControlName="name" />
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Intervalo" formControlName="restTimeSeconds">
+          <input
+            matInput
+            placeholder="Grupo Muscular"
+            formControlName="muscleGroup"
+          />
         </mat-form-field>
-        <app-add-exercise (exerciseCreated)="addNewExercise($event)"></app-add-exercise>
-    </form>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Intervalo"
+            formControlName="restTimeSeconds"
+          />
+        </mat-form-field>
+        <app-add-exercise
+          (exerciseCreated)="addNewExercise($event)"
+        ></app-add-exercise>
+      </form>
     </div>
     <div *ngFor="let exercise of exercises">
       <mat-accordion>
@@ -23,13 +36,18 @@
               <mat-icon>delete</mat-icon>
             </button>
           </mat-expansion-panel-header>
-          {{exercise.sxr}}
-          {{exercise.technique}}
+          {{ exercise.sxr }}
+          {{ exercise.technique }}
         </mat-expansion-panel>
       </mat-accordion>
     </div>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="saveTraining()">Salvar Treino</button>
+    <button mat-stroked-button color="primary" (click)="close.emit()">
+      Cancelar
+    </button>
+    <button mat-raised-button color="primary" (click)="saveTraining()">
+      Salvar Treino
+    </button>
   </mat-card-actions>
 </mat-card>

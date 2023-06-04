@@ -1,0 +1,99 @@
+<div class="student-details-container wrapper">
+  <header class="student-details-container-header">
+    <img src="/assets/img/user.png" alt="User profile" />
+    <div class="student-details-container-header-info">
+      <h2>Dados pessoais</h2>
+
+      <h3>{{ student.firstName }} {{ student.lastName }}</h3>
+
+      <div>
+        <strong>Peso: </strong>
+        <span>{{ student.weight }}</span>
+      </div>
+
+      <div>
+        <strong>Altura:</strong>
+        <span>{{ student.height }}</span>
+      </div>
+
+      <div>
+        <strong>Objetivo:</strong>
+        <span>{{ student.objective }}</span>
+      </div>
+
+      <div>
+        <strong>Lesão:</strong>
+        <span>{{ student.hasLesion }}</span>
+      </div>
+
+      <div>
+        <strong>Experiência:</strong>
+        <span>{{ student.hasExperience }}</span>
+      </div>
+    </div>
+    <div class="student-details-container-header-anamnesis">
+      <h2>Anamnese</h2>
+
+      <div>
+        <strong>Restrição Alimentar:</strong>
+        <span>{{ student.hasFoodRestriction }}</span>
+      </div>
+
+      <div>
+        <strong>Uso de Medicamentos:</strong>
+        <span>{{ student.useMedicine }}</span>
+      </div>
+
+      <div>
+        <strong>Fumante:</strong>
+        <span>{{ student.isSmoker }}</span>
+      </div>
+
+      <div>
+        <strong>Descrição da Rotina:</strong>
+        <span>{{ student.routineDescription }}</span>
+      </div>
+    </div>
+  </header>
+
+  <h2>Treinos</h2>
+
+  <section class="student-details-container-list">
+    <mat-card
+      class="student-details-container-list-item"
+      *ngFor="let training of student.workouts"
+    >
+      <mat-card-header class="student-details-container-list-item-header">
+        <strong>Grupo Muscular:</strong> {{ training.muscleGroup }}
+        <strong>Tempo de Descanso:</strong> {{ training.restTimeSeconds }}
+      </mat-card-header>
+      <mat-card-content class="student-details-container-list-item-data">
+        <div class="student-details-container-list-item-data-exercises">
+          <div
+            class="student-details-container-list-item-data-exercises-item"
+            *ngFor="let exercise of training.exercises"
+          >
+            <p><strong>Nome:</strong> {{ exercise.name }}</p>
+            <p><strong>Série por Repetição:</strong> {{ exercise.sxr }}</p>
+            <p><strong>Técnica Avançada:</strong> {{ exercise.technique }}</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </section>
+</div>
+
+<div class="student-details-container-footer">
+  <button mat-raised-button color="primary" (click)="addTraining()">
+    Adicionar Treino
+  </button>
+</div>
+
+<ng-container *ngIf="showAddTraining">
+  <div class="dialog-wrapper">
+    <app-add-training
+      (close)="showAddTraining = !showAddTraining"
+      (trainingCreated)="saveTraining($event)"
+    ></app-add-training>
+  </div>
+</ng-container>

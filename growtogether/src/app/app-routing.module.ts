@@ -1,19 +1,32 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { StudentsDetailComponent } from './components/students-detail/students-detail.component';
 import { AuthComponent } from './components/auth/auth.component';
+import { FeaturesComponent } from './components/features/features.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'auth', pathMatch: 'full' },
+  { path: '*', redirectTo: 'auth' },
+  {
+    path: '',
+    component: FeaturesComponent,
+    loadChildren: () =>
+      import('./components/features/features.module').then(
+        (m) => m.FeaturesModule
+      ),
+  },
   {
     path: 'auth',
     component: AuthComponent,
     loadChildren: () =>
       import('./components/auth/auth.module').then((m) => m.AuthModule),
   },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'student/:id', component: StudentsDetailComponent },
+  {
+    path: 'student',
+    component: FeaturesComponent,
+    loadChildren: () =>
+      import('./components/features/student/student.module').then(
+        (m) => m.StudentModule
+      ),
+  },
 ];
 
 @NgModule({

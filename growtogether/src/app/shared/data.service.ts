@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore} from '@angular/fire/compat/firestore'
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Student } from '../model/student';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
-
-  constructor(private afs: AngularFirestore) { }
+  constructor(private afs: AngularFirestore) {}
 
   addStudent(student: Student) {
-    student.id = this.afs.createId();
     return this.afs.collection('/Students').add(student);
   }
 
@@ -19,12 +17,12 @@ export class DataService {
   }
 
   deleteStudent(student: Student) {
-    return this.afs.doc('/Students/'+student.id).delete();
+    return this.afs.collection('/Students').doc(student.id).delete();
   }
 
-  updateStudent(student: Student) {
-    this.deleteStudent(student);
-    this.addStudent(student);
+  updateStudent(id: any, student: Student) {
+    console.log(student.id);
+    return this.afs.collection('Students').doc(id).update(student);
   }
 
   getStudentById(id: any) {

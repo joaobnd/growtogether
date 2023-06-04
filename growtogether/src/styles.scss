@@ -47,8 +47,18 @@ body {
   color: var(--text-primary);
 }
 
+a {
+  cursor: pointer;
+}
+
+.wrapper {
+  max-width: 75rem;
+  margin: 0 auto;
+}
+
 :root {
   --full-white: #ffffff;
   --text-primary: #424242;
   --purple-primary: #9c27b0;
+  --background-primary: #fafafa;
 }
