@@ -1,16 +1,26 @@
 <mat-card>
   <mat-card-content>
-    <form  [formGroup]="exerciseForm">
-      <mat-form-field>
-        <input matInput placeholder="Nome do Exercício" formControlName="name">
+    <form [formGroup]="exerciseForm">
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          placeholder="Nome do Exercício"
+          formControlName="name"
+        />
       </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Série x Repetição" formControlName="sxr">
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="Série x Repetição" formControlName="sxr" />
       </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Técnica Avançada" formControlName="technique">
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          placeholder="Técnica Avançada"
+          formControlName="technique"
+        />
       </mat-form-field>
-      <button mat-raised-button color="primary" (click)="addExercise()">Adicionar Exercício</button>
+      <button mat-raised-button color="primary" (click)="addExercise()">
+        Adicionar Exercício
+      </button>
     </form>
   </mat-card-content>
 </mat-card>

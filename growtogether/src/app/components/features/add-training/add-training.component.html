@@ -3,17 +3,17 @@
     <h2>Novo Treino</h2>
     <div class="input-group" [formGroup]="trainingForm">
       <form [formGroup]="trainingForm">
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <input matInput placeholder="Nome" formControlName="name" />
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <input
             matInput
             placeholder="Grupo Muscular"
             formControlName="muscleGroup"
           />
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <input
             matInput
             placeholder="Intervalo"
@@ -25,7 +25,9 @@
         ></app-add-exercise>
       </form>
     </div>
-    <div *ngFor="let exercise of exercises">
+
+    <h2>Exercícios</h2>
+    <div *ngFor="let exercise of exercises; let i = index">
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
